@@ -14,9 +14,15 @@ def ackley( x, a=20, b=0.2, c=2*np.pi ):
     s2 = sum( np.cos( c * x ))
     return -a*np.exp( -b*np.sqrt( s1 / n )) - np.exp( s2 / n ) + a + np.exp(1)
 
+def griewank( x, fr=4000 ):
+    x = np.asarray_chkfinite(x)
+    n = len(x)
+    j = np.arange( 1., n+1 )
+    s = sum( x**2 )
+    p = np.prod( np.cos( x / np.sqrt(j) ))
+    return s/fr - p + 1
 
-
-functions = [ackley]
+functions = [ackley, griewank]
 
 ##########################
 # charting
